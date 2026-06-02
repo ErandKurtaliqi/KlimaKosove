@@ -19,11 +19,15 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddSingleton<ClimateDataService>();
 
 // Configure CORS for Angular
+var allowedOrigins = builder.Configuration["ALLOWED_ORIGINS"]?
+    .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+    ?? ["http://localhost:4200"];
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular", policy =>
     {
-        policy.WithOrigins("http://localhost:4200")
+        policy.WithOrigins(allowedOrigins)
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
