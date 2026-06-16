@@ -9,7 +9,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() 
     { 
-        Title = "Kosovo Climate Data API", 
+        Title = "Podujeva Climate Data API", 
         Version = "v1",
         Description = "API për të dhënat klimatike të Kosovës dhe qyteteve të saj"
     });
@@ -21,7 +21,7 @@ builder.Services.AddSingleton<ClimateDataService>();
 // Configure CORS for Angular
 var allowedOrigins = builder.Configuration["ALLOWED_ORIGINS"]?
     .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-    ?? ["https://climate-kosovo.onrender.com"];
+    ?? ["https://climate-kosovo.onrender.com", "http://localhost:4200"];
 
 builder.Services.AddCors(options =>
 {
